@@ -7,7 +7,7 @@ const MenuItem = ({ onSelect, text }) => {
     <a
       href="#"
       onClick={() => {
-        onSelect();
+        onSelect(text);
       }}
       className="menu-item"
     >
@@ -17,7 +17,9 @@ const MenuItem = ({ onSelect, text }) => {
 };
 
 const App = () => {
-  const handleSelectItem = () => {
+  const [pageTitle, setPageTitle] = useState('Domů');
+  const handleSelectItem = (page) => {
+    setPageTitle(page);
     setMenuOpened(!menuOpened);
   };
   const [menuOpened, setMenuOpened] = useState(true);
@@ -41,7 +43,7 @@ const App = () => {
         </div>
       </header>
       <main>
-        <h1>Domů</h1>
+        <h1>{pageTitle}</h1>
       </main>
     </>
   );
