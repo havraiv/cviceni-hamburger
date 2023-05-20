@@ -2,14 +2,20 @@ import React, { useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import './style.css';
 
-const MenuItem = (props) => {
+const MenuItem = ({ onSelect, text }) => {
   return (
-    <a href="#" className="menu-item">
-      {props.text}
+    <a
+      href="#"
+      onClick={() => {
+        onSelect();
+      }}
+      className="menu-item"
+    >
+      {text}
     </a>
   );
 };
-// Chceme, aby komponenta MenuItem přijímala prop s názvem onSelect. Ta bude očekávat callback, který se zavolá, když uživatel vybere danou položku. Předejte tedy callback handleSelectItem všem komponentám MenuItem jako prop s názvem onSelect.
+
 const App = () => {
   const handleSelectItem = () => {
     setMenuOpened(!menuOpened);
@@ -26,11 +32,11 @@ const App = () => {
             }}
           ></button>
           <div className="menu__items">
-            <MenuItem text="Domů" />
-            <MenuItem text="Naše nabídka" />
-            <MenuItem text="Náš tým" />
-            <MenuItem text="Blog" />
-            <MenuItem text="Kontakt" />
+            <MenuItem onSelect={handleSelectItem} text="Domů" />
+            <MenuItem onSelect={handleSelectItem} text="Naše nabídka" />
+            <MenuItem onSelect={handleSelectItem} text="Náš tým" />
+            <MenuItem onSelect={handleSelectItem} text="Blog" />
+            <MenuItem onSelect={handleSelectItem} text="Kontakt" />
           </div>
         </div>
       </header>
